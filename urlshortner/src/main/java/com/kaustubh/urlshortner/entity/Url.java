@@ -1,9 +1,12 @@
 package com.kaustubh.urlshortner.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
@@ -16,23 +19,18 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Redirect {
+public class Url {
 	@Id
 	@GeneratedValue
-	@JsonIgnore
 	private long id;
 	
-	@NaturalId
-	@Column(unique = true, nullable = false)
-	@NotNull
-	private String alias;
+	private String shortLink;
 	
-	@Column(nullable = false)
-	@NotNull
-	private String url;
+	@Lob
+	private String longUrl;
 	
-	public Redirect(final String alias, final String url) {
-		this.alias = alias;
-		this.url  = url;
-	}
+	private LocalDateTime creationDate;
+	
+	private LocalDateTime expirationDate;
+	
 }
