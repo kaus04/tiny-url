@@ -64,6 +64,7 @@ public class UrlController {
 		  urlErrorResponseDto.setError("Url Doesnt exist or expired");  
 	  }
 	  if(urlToRet.getExpirationDate().isBefore(LocalDateTime.now())) {
+		  urlService.deleteShortLink(urlToRet);
 		  urlErrorResponseDto.setError("URL Expired");
 		  urlErrorResponseDto.setStatus("200");
 	  }
